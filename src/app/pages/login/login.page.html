@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main_content_div">
+
+    <form [formGroup] = "loginForm" (ngSubmit) = "login()" class="form-css">
+    
+      <img src="assets/imgs/logoinvista.png" class="logo">
+      <!-- <ion-label class="logo_text">INVISTA<span>APP</span></ion-label> -->
+
+      <ion-label class="bold_lbl"></ion-label>
+
+      <ion-list>
+
+        <div *ngFor="let validation of validation_messages.username">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && loginForm.get('username').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+  
+        <div *ngFor="let validation of validation_messages.password">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && loginForm.get('password').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+  
+      </ion-list>
+      
+      <ion-input type="text" required name="username" formControlName="username" placeholder="Usuario"></ion-input>
+      <ion-input type="password" required name="password" formControlName="password" placeholder="Password">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+
+      <ion-button expand="block" shape="round" class="" type="submit" color="primary">
+          Ingresar
+      </ion-button>
+
+      </form>
+
+  </div>
+</ion-content>

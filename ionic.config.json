@@ -3,5 +3,9 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [ {
+    "path": "/api_invista",
+    "proxyUrl": "https://app.invista.pe/"
+  }]
 }

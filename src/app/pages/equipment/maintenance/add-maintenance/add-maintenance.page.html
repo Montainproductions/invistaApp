@@ -1,0 +1,170 @@
+<ion-header [translucent]="true" mode="md">
+  <ion-toolbar color="primary" style="padding-top: 20px;">
+    <ion-button (click)="goBack()" fill="clear" size="small" slot="start">
+      <ion-icon name="chevron-back" style="font-size: 24px;" style="color:black !important;"></ion-icon>
+    </ion-button>
+      <ion-title style="padding: 0px;" >Registrar Mantenimiento de {{ plate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+
+    <form [formGroup] = "maintenanceForm" (ngSubmit) = "registerMaintenanceEquipment()" class="form-css">
+    
+      <ion-list>
+
+        <div *ngFor="let validation of validation_messages.code">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('code').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+  
+        <div *ngFor="let validation of validation_messages.provider">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('provider').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+
+        <div *ngFor="let validation of validation_messages.service">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('service').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+
+        <div *ngFor="let validation of validation_messages.description">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('description').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+
+        <div *ngFor="let validation of validation_messages.from">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('from').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+
+        <div *ngFor="let validation of validation_messages.to">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('to').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+
+        <div *ngFor="let validation of validation_messages.kmInicio">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('kmInicio').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+
+        <div *ngFor="let validation of validation_messages.kmFinal">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('kmFinal').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+        
+        <div *ngFor="let validation of validation_messages.costHand">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('costHand').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+        
+        <div *ngFor="let validation of validation_messages.costPieces">
+          <ion-label class="error"
+            *ngIf = "isSubmitted && maintenanceForm.get('costPieces').hasError(validation.type)" >
+            {{ validation.message }}
+          </ion-label>
+        </div>
+  
+      </ion-list>
+
+      <ion-label class="green_name">Proveedor</ion-label>
+      <ion-input type="text" placeholder="Proveedor" formControlName="provider"></ion-input>
+
+      <ion-label class="green_name">Tipo de mantenimiento</ion-label>
+      <ion-select value="1" placeholder="Seleccione" formControlName="service">
+        <ion-select-option value="CorrectivoProgramado">Correctivo Programado</ion-select-option>
+        <ion-select-option value="CorrectiveNoProgramado">Corrective No Programado</ion-select-option>
+        <ion-select-option value="Preventivo">Preventivo</ion-select-option>
+      </ion-select>
+        
+      <ion-label class="green_name">Descripcion</ion-label>
+      <ion-input type="text" placeholder="Descripcion" formControlName="description"></ion-input>
+  
+      <ion-label class="green_name">Desde</ion-label>
+      <ion-item id="open-modal-from" class="no-border no-padding">
+        <ion-input type="text" formControlName="from" [value]="formattedStringFrom" readonly></ion-input>
+      </ion-item>
+
+      <ion-label class="green_name">Hasta</ion-label>
+      <ion-item id="open-modal-to" class="no-border no-padding">
+        <ion-input type="text" formControlName="to" [value]="formattedStringTo" readonly></ion-input>
+      </ion-item>
+
+      <ion-label class="green_name">Km (inicio del mantenimiento)</ion-label>
+      <ion-input type="text" placeholder="Km (inicio del mantenimiento)" formControlName="kmInicio" inputmode="numeric"></ion-input>
+
+      <ion-label class="green_name">Km (final del mantenimiento)</ion-label>
+      <ion-input type="text" placeholder="Km (final del mantenimiento)" formControlName="kmFinal" inputmode="numeric"></ion-input>
+
+    <ion-label class="green_name">Costo (Mano de Obra)</ion-label>
+    <ion-input type="text" placeholder="Costo (Mano de Obra)" formControlName="costHand" inputmode="numeric"></ion-input>
+
+    <ion-label class="green_name">Costo (Partes)</ion-label>
+    <ion-input type="text" placeholder="Costo (Partes)" formControlName="costPieces" inputmode="numeric"></ion-input>   
+          
+    <ion-label class="green_name">Imagen</ion-label>
+      <div class="upload_box" (click)="openGallery()">
+        <div class="abs_div">
+          <ion-icon *ngIf="!image" name="image-outline"></ion-icon>
+          <ion-label *ngIf="!image">Subir Imagen</ion-label>
+          <img *ngIf="image" [src]="image.data" class="preview-image"/>
+        </div>
+      </div>
+
+      <ion-modal trigger="open-modal-from">
+        <ng-template>
+          <ion-content>
+            <ion-datetime #datetimefrom [value]="dateValueFrom" size="cover" 
+              (ionChange)="dateChangedFrom(datetimefrom.value)" 
+              (ionCancel)="showPicker=false;">
+              <ion-buttons slot="buttons">
+                <ion-button (click)="closefrom()" color="primary">Cancelar</ion-button>
+                <ion-button (click)="selectfrom()" color="primary">Seleccionar</ion-button>
+              </ion-buttons>
+            </ion-datetime>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <ion-modal trigger="open-modal-to">
+        <ng-template>
+          <ion-content>
+            <ion-datetime #datetimeto [value]="dateValueTo" size="cover" 
+              (ionChange)="dateChangedTo(datetimeto.value)" 
+              (ionCancel)="showPicker=false;">
+              <ion-buttons slot="buttons">
+                <ion-button (click)="closeto()" color="primary">Cancelar</ion-button>
+                <ion-button (click)="selectto()" color="primary">Seleccionar</ion-button>
+              </ion-buttons>
+            </ion-datetime>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <ion-button expand="block" shape="round" type="submit" color="primary">
+          Guardar
+      </ion-button>
+
+    </form>
+      
+  </div>
+</ion-content>

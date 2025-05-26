@@ -1,0 +1,44 @@
+<ion-header [translucent]="true" mode="md">
+    <ion-toolbar color="primary" style="padding-top: 20px;">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+
+      <div class="extra_header">
+          <div class="flex_div">
+              <div>
+                  <ion-label class="logo_text">Bienvenido</ion-label>
+                  <ion-label class="small_text">
+                      {{ nombreUsuario }}
+                  </ion-label>
+              </div>
+              <!-- <div>
+                  <img src="assets/imgs/medical-app.png">
+              </div> -->
+          </div>
+      </div>
+
+      <div class="content_div">
+          <div class="grid_box">
+              <div class="box_div" (click)="goToEquipment()">
+                  <ion-icon name="car-outline" size="large"></ion-icon>
+                  <ion-label>Unidades</ion-label>
+              </div>
+              <!-- <div class="box_div">
+                  <img src="assets/imgs/pills.png">
+                  <ion-label>Doctors</ion-label>
+              </div> -->
+          </div>
+
+      </div>
+
+      
+
+  </div>
+</ion-content>
