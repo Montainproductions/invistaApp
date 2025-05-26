@@ -1,0 +1,7 @@
+{
+  "name": "invistaApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
