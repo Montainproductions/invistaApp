@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'equipment',
     loadChildren: () => import('./pages/equipment/equipment.module').then( m => m.EquipmentPageModule)
-  }
+  },
+  {
+    path: 'APICalls',
+    loadChildren: () => import('./pages/APICalls/APICalls.module').then( m => m.APICallsPageModule)
+  },
 ];
 
 @NgModule({

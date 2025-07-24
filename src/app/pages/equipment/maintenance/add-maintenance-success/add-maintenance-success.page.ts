@@ -12,7 +12,7 @@ export class AddMaintenanceSuccessPage implements OnInit {
   codeEquipment: any | undefined;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router,
   ) { 
     this.route.queryParams.subscribe(params => {
@@ -20,7 +20,7 @@ export class AddMaintenanceSuccessPage implements OnInit {
       if (navigation?.extras.state) {
         console.log(navigation.extras);
         this.codeEquipment = navigation.extras.state['code'] ?? '';
-      } 
+      }
       console.log(this.codeEquipment);
     });
   }

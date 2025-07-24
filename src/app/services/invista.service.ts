@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class InvistaService {
-
   constructor(
     private httpService: HttpService
   ) { }
@@ -15,6 +14,7 @@ export class InvistaService {
     return this.httpService.doPost(environment.url + `login`, data);
   }
 
+  /* Equipment */
   listEquipments(role_id: any, document: any) {
     return this.httpService.doGet(environment.url + `list-equipment?role_id=` + role_id + `&document=` + document, );
   }
@@ -71,4 +71,24 @@ export class InvistaService {
     return this.httpService.doPost(environment.url + `update-maintenance-equipment`, data);
   }
 
+  /* Nuevas paginas */
+  getInspectionTypes(data: any){
+    return this.httpService.doPost(environment.url + `inspection-types`, data);
+  }
+
+  getEmployee(data: any){
+    return this.httpService.doPost(environment.url + `employee`, data);
+  }
+
+  createItems(data: any){
+    return this.httpService.doPost(environment.url + `create-items`, data);
+  }
+
+  getResponsableTypes(data: any){
+    return this.httpService.doPost(environment.url + `responsable-types`, data);
+  }
+
+  getCriteria(data: any){
+    return this.httpService.doPost(environment.url + `criteria`, data);
+  }
 }

@@ -119,5 +119,4 @@ export class EquipmentPage implements OnInit {
     };
     this.router.navigateByUrl('/equipment/maintenance/add-maintenance', navigationExtrars);
   }
-
 }

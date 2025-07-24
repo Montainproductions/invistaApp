@@ -1,54 +1,50 @@
 <ion-header [translucent]="true" mode="md">
     <ion-toolbar color="primary" style="padding-top: 20px;">
-    <ion-button (click)="goBack()" fill="clear" size="small" slot="start">
-      <ion-icon name="chevron-back" style="font-size: 24px;" style="color:black !important;"></ion-icon>
-  </ion-button>
-      <ion-title style="padding: 0px;">Mantenimientos</ion-title>
-  </ion-toolbar>
+        <ion-button (click)="goBack()" fill="clear" size="small" slot="start">
+            <ion-icon name="chevron-back" style="font-size: 24px;" style="color:black !important;"></ion-icon>
+        </ion-button>
+        <ion-title style="padding: 0px; font-size:18px;">Mantenimientos</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+    <ion-fab horizontal="start" vertical="bottom" slot="fixed" (click)="downloadMaintenance()">
+        <ion-fab-button>
+            <ion-icon name="cloud-download-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
     <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="addMaintenance()">
         <ion-fab-button>
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
 
-  <div class="main_content_div">
-
-      <ion-list>
-
-        <ion-item-sliding *ngFor="let item of visibleItems">
-            <ion-item lines="none" class="flex_div">
-                <div class="item_div">
-                    <div class="flex_div">
-                        <!-- <div class="light_div">
-                            <img src="assets/imgs/pills.png">
-                        </div> -->
-                        <div class="tab_detail">
-                            <ion-label class="bold_lbl">{{ Plate }}</ion-label>
-                            <ion-label class="grey_lbl">{{ getFormattedDate(item.From) }} - {{ getFormattedDate(item.To) }}</ion-label>
-                            <ion-label class="grey_lbl">{{ item.Service }}</ion-label>
+    <div class="main_content_div">
+        <ion-list>
+            <ion-item-sliding *ngFor="let item of visibleItems">
+                <ion-item lines="none" class="flex_div">
+                    <div class="item_div">
+                        <div class="flex_div">
+                            <!-- <div class="light_div">
+                                <img src="assets/imgs/pills.png">
+                            </div> -->
+                            <div class="tab_detail">
+                                <ion-label class="bold_lbl">{{ Plate }}</ion-label>
+                                <ion-label class="grey_lbl">{{ getFormattedDate(item.From) }} - {{ getFormattedDate(item.To) }}</ion-label>
+                                <ion-label class="grey_lbl">{{ item.Service }}</ion-label>
+                            </div>
+                            <ion-label class="price">{{ item.Cost }}</ion-label>
                         </div>
-                        <ion-label class="price">{{ item.Cost }}</ion-label>
                     </div>
-                </div>
-            </ion-item>
-
-            <ion-item-options side="end">
-                <ion-item-option color="warning" (click)="editMaintenance(item.Nr)">
-                    <ion-icon slot="icon-only" name="create"></ion-icon>
-                </ion-item-option>
-            </ion-item-options>
-
-        </ion-item-sliding>
-    </ion-list>
-
-    <ion-button expand="full" shape="round" (click)="loadMore()" *ngIf="hasMoreItems" color="primary">
-        Cargar más
-    </ion-button>
-
-  </div>
-
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option color="warning" (click)="editMaintenance(item.Nr)">
+                        <ion-icon slot="icon-only" name="create"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+        <ion-button expand="full" shape="round" (click)="loadMore()" *ngIf="hasMoreItems" color="primary">Cargar más</ion-button>
+    </div>
 </ion-content>

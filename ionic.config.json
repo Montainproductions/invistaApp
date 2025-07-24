@@ -4,8 +4,10 @@
     "capacitor": {}
   },
   "type": "angular",
-  "proxies": [ {
-    "path": "/api_invista",
-    "proxyUrl": "https://app.invista.pe/"
-  }]
+  "proxies": [
+    {
+      "path": "/api_invista",
+      "proxyUrl": "https://app.invista.pe/"
+    }
+  ]
 }

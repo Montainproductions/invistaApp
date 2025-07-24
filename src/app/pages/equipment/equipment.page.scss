@@ -19,9 +19,7 @@ ion-header {
 
     margin-bottom: 10px;
     
-    img {
-        width: 48px;
-    }
+    img {width: 48px;}
 }
 
 .extra_header {
@@ -51,9 +49,7 @@ ion-header {
 .main_content_div {
     padding: 16px;
 
-    ion-label {
-        display: block;
-    }
+    ion-label {display: block;}
 
     .title_lbl {
         font-family: 'semi-bold';
@@ -96,12 +92,14 @@ ion-header {
                     font-size: 18px;
                     font-family: 'semi-bold';
                 }
+
                 .sub_lbl {
                     font-size: 13px;
                     font-family: 'medium';
                     color: gray;
                     line-height: 10px;
                 }
+
                 .grey_lbl {
                     font-size: 13px;
                     color: lightgrey;
@@ -145,8 +143,6 @@ ion-header {
             letter-spacing: 1px;
         }
 
-        .call_btn {
-            --background: white;
-        }
+        .call_btn {--background: white;}
     }
 }

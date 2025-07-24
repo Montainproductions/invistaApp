@@ -11,7 +11,6 @@ import { StorageService } from 'src/app/services/storage.service';
   standalone: false,
 })
 export class HomePage implements OnInit {
-
   usuario: any;
   nombreUsuario: any;
 
@@ -23,33 +22,25 @@ export class HomePage implements OnInit {
     this.loadUsuario();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   loadUsuario() {
-
-    this.storageService.get(Constants.AUTH).then(
-      (res) => {
-      
+    this.storageService.get(Constants.AUTH).then((res) => {
       this.usuario  = JSON.parse(res);
       console.log(this.usuario.person.name);
       let usuario = this.usuario.person.name + ' ' + this.usuario.person.lastname;
       this.appComponent.nombreUsuario = usuario;
       this.nombreUsuario = usuario;
-      console.log(usuario);
-       //this.personal = JSON.parse(res.value);
-      // this.moduleTemperatura = false;
-      // this.moduleRendicion = false;
-
-      // console.log(this.appComponent.appPages);
-      // this.appComponent.nombreUsuario = this.personal.NombreUsuario;
-            
+      /*console.log(usuario);
+      this.personal = JSON.parse(res.value);
+      this.moduleTemperatura = false;
+      this.moduleRendicion = false;
+      console.log(this.appComponent.appPages);
+      this.appComponent.nombreUsuario = this.personal.NombreUsuario;*/
     });
-    
   }
 
-  goToEquipment() {
-    this.router.navigateByUrl('/equipment');
-  }
+  goToEquipment() {this.router.navigateByUrl('/equipment');}
 
+  goToAPIScreen() {this.router.navigateByUrl('/APICalls');}
 }

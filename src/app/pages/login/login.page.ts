@@ -25,22 +25,14 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: new FormControl('', Validators.compose([
-        Validators.required,
-      ])),
-      password: new FormControl('', Validators.compose([
-        Validators.required,
-      ])),
+      username: new FormControl('', Validators.compose([Validators.required,])),
+      password: new FormControl('', Validators.compose([Validators.required,])),
     })
   }
 
   validation_messages = {
-    'username': [
-      { type: 'required', message: 'Ingresa el nombre de usuario'},
-    ],
-    'password': [
-      { type: 'required', message: 'Ingresa su contraseña'},
-    ],
+    'username': [{ type: 'required', message: 'Ingresa el nombre de usuario'},],
+    'password': [{ type: 'required', message: 'Ingresa su contraseña'},],
   }
 
   async login() {

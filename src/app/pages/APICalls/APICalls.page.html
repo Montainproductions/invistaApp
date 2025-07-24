@@ -1,0 +1,107 @@
+<head></head>
+
+<ion-header [translucent]="true" mode="md">
+    <ion-toolbar color="primary" style="padding-top: 20px;">
+        <ion-buttons slot="start"><ion-menu-button></ion-menu-button></ion-buttons>
+        <ion-title style="font-size:18px">Tipos de Inspecciones</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row class="ion-align-items-center">
+            <ion-col size="12" class="ion-text-center">
+                <br>
+                <div class="box_div"><ion-button class="popup-btn" id="BuenasPracticas" style="--background:CadetBlue">Inspección en Buenas Prácticas de Almacenamiento (BPA)</ion-button></div>
+                <br>
+                <div class="box_div"><ion-button class="popup-btn" style="--background:gray">Inspección de Orden y Limpieza en Áreas de Trabajo</ion-button></div>
+                <br>
+                <div class="box_div"><ion-button class="popup-btn" style="--background:green">Inspección de Instalaciones e Infraestructura de Almacenes</ion-button></div>
+                <br>
+                <div class="box_div"><ion-button class="popup-btn" style="--background:red">Inspección del Kit Antiderrame</ion-button></div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-modal trigger="BuenasPracticas">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Feedback Form</h2>
+                <ion-button class="close-btn" fill="clear" id="closeModal"><ion-icon name="close"></ion-icon></ion-button>
+            </div>
+        
+            <div class="modal-body">
+                <p>We'd love to hear your feedback! Please take a moment to share your thoughts about our service.</p>
+                <div class="form-group"><ion-input label="Your Name" label-placement="floating" placeholder="Enter your name"></ion-input></div>
+                <div class="form-group"><ion-input label="Email" label-placement="floating" placeholder="Enter your email" type="email"></ion-input></div>
+                <div class="form-group"><ion-textarea label="Feedback" label-placement="floating" placeholder="Tell us what you think" rows="4"></ion-textarea></div>
+                <ion-button expand="block" class="submit-btn"><ion-icon slot="start" name="send"></ion-icon>Submit Feedback</ion-button>
+            </div>
+        
+            <div class="modal-footer">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+            </div>
+        </div>
+    </ion-modal>
+    
+    <script>
+        // Handle modal close button
+        document.getElementById('closeModal').addEventListener('click', () => {
+            const modal = document.querySelector('ion-modal');
+            modal.dismiss();
+        });
+        
+        // Animation for the modal
+        const modal = document.querySelector('ion-modal');
+        modal.addEventListener('ionModalWillPresent', () => {
+            document.querySelector('.modal-content').style.transform = 'translateY(20px)';
+            document.querySelector('.modal-content').style.opacity = '0';
+        });
+        
+        modal.addEventListener('ionModalDidPresent', () => {
+            const content = document.querySelector('.modal-content');
+            content.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+            content.style.transform = 'translateY(0)';
+            content.style.opacity = '1';
+        });
+        
+        // Add ripple effect to buttons
+        document.querySelectorAll('ion-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {ripple.remove();}, 600);
+            });
+        });
+        
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</ion-content>

@@ -15,15 +15,13 @@
       <ion-list>
 
         <div *ngFor="let validation of validation_messages.username">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && loginForm.get('username').hasError(validation.type)" >
+          <ion-label class="error"*ngIf = "isSubmitted && loginForm.get('username').hasError(validation.type)" >
             {{ validation.message }}
           </ion-label>
         </div>
   
         <div *ngFor="let validation of validation_messages.password">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && loginForm.get('password').hasError(validation.type)" >
+          <ion-label class="error" *ngIf = "isSubmitted && loginForm.get('password').hasError(validation.type)" >
             {{ validation.message }}
           </ion-label>
         </div>
@@ -31,15 +29,10 @@
       </ion-list>
       
       <ion-input type="text" required name="username" formControlName="username" placeholder="Usuario"></ion-input>
-      <ion-input type="password" required name="password" formControlName="password" placeholder="Password">
-        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-      </ion-input>
+      <ion-input type="password" required name="password" formControlName="password" placeholder="Password"><ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
 
-      <ion-button expand="block" shape="round" class="" type="submit" color="primary">
-          Ingresar
-      </ion-button>
+      <ion-button expand="block" shape="round" class="" type="submit" color="primary">Ingresar</ion-button>
 
-      </form>
-
+    </form>
   </div>
 </ion-content>

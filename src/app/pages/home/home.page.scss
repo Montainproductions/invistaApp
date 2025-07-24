@@ -16,9 +16,7 @@ ion-header {
 
     margin-bottom: 10px;
     
-    img {
-        width: 48px;
-    }
+    img {width: 48px;}
 }
 .main_content_div {
     width: 100%;
@@ -41,9 +39,9 @@ ion-header {
                     color: var(--ion-color-primary);
                 }
             }
-            .small_text {
-                font-size: 14px;
-            }
+
+            .small_text {font-size: 14px;}
+            
             img {
                 width: 200px;
                 margin-left: 16px;
@@ -89,9 +87,7 @@ ion-header {
                 height: 140px;
                 margin: 16px;
         
-                img {
-                    width: 70px;
-                }
+                img {width: 70px;}
         
                 ion-label {
                     text-align: center;

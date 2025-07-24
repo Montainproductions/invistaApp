@@ -15,9 +15,7 @@ ion-header {
 
     margin-bottom: 10px;
     
-    img {
-        width: 48px;
-    }
+    img {width: 48px;}
 }
 ion-segment {
     ion-label {
@@ -58,6 +56,7 @@ ion-segment {
                     width: 18px;
                 }
             }
+
             .tab_detail {
                 padding-left: 16px;
 
@@ -65,11 +64,13 @@ ion-segment {
                     font-size: 18px;
                     font-family: 'medium';
                 }
+
                 .grey_lbl {
                     font-size: 12px;
                     color: grey;
                 }
             }
+            
             .price {
                 font-family: 'semi-bold';
                 position: absolute;

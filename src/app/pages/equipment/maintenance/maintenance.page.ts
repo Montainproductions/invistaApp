@@ -6,6 +6,7 @@ import { InvistaService } from 'src/app/services/invista.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 import { DatePipe } from '@angular/common';
+import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-maintenance',
@@ -14,7 +15,6 @@ import { DatePipe } from '@angular/common';
   standalone: false
 })
 export class MaintenancePage implements OnInit {
-
   codeEquipment: any | undefined;
   user: any;
   maintenanceEquipments: any = [];
@@ -32,62 +32,52 @@ export class MaintenancePage implements OnInit {
     private navController: NavController,
     private storageService: StorageService,
     private invistaService: InvistaService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
   ) { 
     this.route.queryParams.subscribe(params => {
       const navigation = this.router.getCurrentNavigation();
-      if (navigation?.extras.state) {
-        this.codeEquipment = navigation.extras.state['code'] ?? '';
-      } 
-      console.log(this.codeEquipment);
+      if (navigation?.extras.state) {this.codeEquipment = navigation.extras.state['code'] ?? '';} 
+      //console.log(this.codeEquipment);
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ionViewDidEnter() {
-        this.loadData();
-      }
+  ionViewDidEnter() {this.loadData();}
       
-      async loadData() {
-          const token = await this.storageService.get(Constants.AUTH);
-          var data = JSON.parse(token); console.log(data);
-          this.user = data;
-          this.listKmEquipments();
-      }
+  async loadData() {
+    const token = await this.storageService.get(Constants.AUTH);
+    var data = JSON.parse(token); 
+    //console.log(data);
+    this.user = data;
+    this.listKmEquipments();
+  }
     
-      getFormattedDate(fecha: string): string | null {
-        return this.datePipe.transform(fecha, 'dd/MM/yyyy');
-      }
+  getFormattedDate(fecha: string): string | null {return this.datePipe.transform(fecha, 'dd/MM/yyyy');}
 
-      listKmEquipments() {
-        const role_id = this.user.role_id;
-        const company_id = this.user.company.id;
-        const document = this.user.person.document;
-        console.log(role_id, company_id, document);
-        this.invistaService.listMaintenanceEquipment(role_id, company_id, this.codeEquipment, document).then(
-          (res) => {
-            if (res.data.status) {
-              console.log('res:::', res.data.data)  
-              const equipmentMaintenances = res.data.data.equipmentMantos;
-              this.Plate = res.data.data.designatedEquipments[0].Plate;
-              this.maintenanceEquipments = equipmentMaintenances;
-              this.loadMore();
-            }
-          },
-          (error) => {
-            console.log(error);
-          }
-        )
-      }
+  listKmEquipments() {
+    const role_id = this.user.role_id;
+    const company_id = this.user.company.id;
+    const document = this.user.person.document;
+    //console.log(role_id, company_id, document);
+    this.invistaService.listMaintenanceEquipment(role_id, company_id, this.codeEquipment, document).then(
+      (res) => {
+        if (res.data.status) {
+          //console.log('res:::', res.data.data)  
+          const equipmentMaintenances = res.data.data.equipmentMantos;
+          this.Plate = res.data.data.designatedEquipments[0].Plate;
+          this.maintenanceEquipments = equipmentMaintenances;
+          this.loadMore();
+        }
+      },
+      (error) => {console.log(error);}
+    )
+  }
     
-      goBack() {
-        this.router.navigateByUrl('/equipment');
-      }
+  goBack() {this.router.navigateByUrl('/equipment');}
 
   addMaintenance() {
-    console.log('code:::', this.codeEquipment);
+    //console.log('code:::', this.codeEquipment);
     let navigationExtrars: NavigationExtras = {
       state: {
         code: this.codeEquipment,
@@ -98,7 +88,7 @@ export class MaintenancePage implements OnInit {
   }
 
   editMaintenance(id: any) {
-    console.log('code:::', this.codeEquipment);
+    //console.log('code:::', this.codeEquipment);
     let navigationExtrars: NavigationExtras = {
       state: {
         id: id,
@@ -108,14 +98,27 @@ export class MaintenancePage implements OnInit {
     this.router.navigateByUrl('/equipment/maintenance/edit-maintenance', navigationExtrars);
   }
 
+  async downloadMaintenance(){
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text('My Custom PDF Report', 20, 20);
+
+    doc.setFontSize(12);
+    doc.text('This was generated dynamically from the Ionic app!', 20, 40);
+
+    
+
+    // Export as Blob
+    const blob = doc.output('blob');
+  }
+
   loadMore() {
     const nextIndex = this.currentIndex + this.itemsPerPage;
     this.visibleItems = this.maintenanceEquipments.slice(0, nextIndex); // Tomar los siguientes elementos
     this.currentIndex = nextIndex;
 
     // Ocultar el botón si ya no hay más elementos para cargar
-    if (this.currentIndex >= this.maintenanceEquipments.length) {
-      this.hasMoreItems = false;
-    }
+    if (this.currentIndex >= this.maintenanceEquipments.length) {this.hasMoreItems = false;}
   }
 }

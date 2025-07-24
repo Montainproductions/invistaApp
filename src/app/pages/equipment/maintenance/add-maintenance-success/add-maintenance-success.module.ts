@@ -17,4 +17,5 @@ import { AddMaintenanceSuccessPage } from './add-maintenance-success.page';
   ],
   declarations: [AddMaintenanceSuccessPage]
 })
+
 export class AddMaintenanceSuccessPageModule {}

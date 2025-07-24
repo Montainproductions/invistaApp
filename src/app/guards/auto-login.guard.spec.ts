@@ -4,14 +4,9 @@ import { CanActivateFn } from '@angular/router';
 import { autoLoginGuard } from './auto-login.guard';
 
 describe('autoLoginGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => autoLoginGuard(...guardParameters));
+  const executeGuard: CanActivateFn = (...guardParameters) => TestBed.runInInjectionContext(() => autoLoginGuard(...guardParameters));
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-  });
+  beforeEach(() => {TestBed.configureTestingModule({});});
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
-  });
+  it('should be created', () => {expect(executeGuard).toBeTruthy();});
 });

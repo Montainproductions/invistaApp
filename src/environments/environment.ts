@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'https://app.invista.pe/public/api/v4/'
-  //url: 'https://cors-anywhere.herokuapp.com/https://app.invista.pe/public/api/v4/'
+  //url: 'https://app.invista.pe/public/api/v4/'
+  url: 'https://cors-anywhere.herokuapp.com/https://app.invista.pe/public/api/v4/'
 };
 
 /*

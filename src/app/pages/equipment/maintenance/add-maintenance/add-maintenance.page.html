@@ -3,85 +3,52 @@
     <ion-button (click)="goBack()" fill="clear" size="small" slot="start">
       <ion-icon name="chevron-back" style="font-size: 24px;" style="color:black !important;"></ion-icon>
     </ion-button>
-      <ion-title style="padding: 0px;" >Registrar Mantenimiento de {{ plate }}</ion-title>
+    <ion-title style="padding: 0px; font-size:18px;" >Registrar Mantenimiento de {{ plate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="main_content_div">
-
     <form [formGroup] = "maintenanceForm" (ngSubmit) = "registerMaintenanceEquipment()" class="form-css">
-    
       <ion-list>
-
         <div *ngFor="let validation of validation_messages.code">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('code').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('code').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
   
         <div *ngFor="let validation of validation_messages.provider">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('provider').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('provider').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
 
         <div *ngFor="let validation of validation_messages.service">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('service').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('service').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
 
         <div *ngFor="let validation of validation_messages.description">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('description').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('description').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
 
         <div *ngFor="let validation of validation_messages.from">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('from').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('from').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
 
         <div *ngFor="let validation of validation_messages.to">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('to').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('to').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
 
         <div *ngFor="let validation of validation_messages.kmInicio">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('kmInicio').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('kmInicio').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
 
         <div *ngFor="let validation of validation_messages.kmFinal">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('kmFinal').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('kmFinal').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
         
         <div *ngFor="let validation of validation_messages.costHand">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('costHand').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('costHand').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
         
         <div *ngFor="let validation of validation_messages.costPieces">
-          <ion-label class="error"
-            *ngIf = "isSubmitted && maintenanceForm.get('costPieces').hasError(validation.type)" >
-            {{ validation.message }}
-          </ion-label>
+          <ion-label class="error" *ngIf = "isSubmitted && maintenanceForm.get('costPieces').hasError(validation.type)"> {{ validation.message }} </ion-label>
         </div>
   
       </ion-list>
@@ -133,9 +100,7 @@
       <ion-modal trigger="open-modal-from">
         <ng-template>
           <ion-content>
-            <ion-datetime #datetimefrom [value]="dateValueFrom" size="cover" 
-              (ionChange)="dateChangedFrom(datetimefrom.value)" 
-              (ionCancel)="showPicker=false;">
+            <ion-datetime #datetimefrom [value]="dateValueFrom" size="cover" (ionChange)="dateChangedFrom(datetimefrom.value)" (ionCancel)="showPicker=false;">
               <ion-buttons slot="buttons">
                 <ion-button (click)="closefrom()" color="primary">Cancelar</ion-button>
                 <ion-button (click)="selectfrom()" color="primary">Seleccionar</ion-button>
@@ -148,9 +113,7 @@
       <ion-modal trigger="open-modal-to">
         <ng-template>
           <ion-content>
-            <ion-datetime #datetimeto [value]="dateValueTo" size="cover" 
-              (ionChange)="dateChangedTo(datetimeto.value)" 
-              (ionCancel)="showPicker=false;">
+            <ion-datetime #datetimeto [value]="dateValueTo" size="cover" (ionChange)="dateChangedTo(datetimeto.value)" (ionCancel)="showPicker=false;">
               <ion-buttons slot="buttons">
                 <ion-button (click)="closeto()" color="primary">Cancelar</ion-button>
                 <ion-button (click)="selectto()" color="primary">Seleccionar</ion-button>
@@ -160,11 +123,7 @@
         </ng-template>
       </ion-modal>
 
-      <ion-button expand="block" shape="round" type="submit" color="primary">
-          Guardar
-      </ion-button>
-
+      <ion-button expand="block" shape="round" type="submit" color="primary">Guardar</ion-button>
     </form>
-      
   </div>
 </ion-content>

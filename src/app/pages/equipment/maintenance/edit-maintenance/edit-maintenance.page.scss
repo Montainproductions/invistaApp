@@ -24,9 +24,7 @@ ion-header {
 
     margin-bottom: 10px;
     
-    img {
-        width: 48px;
-    }
+    img {width: 48px;}
 }
 
 .main_content_div {
@@ -38,6 +36,7 @@ ion-header {
         font-size: 14px;
         margin-bottom: 5px;
     }
+
     ion-input, ion-select{
         border: 1px solid lightgrey;
         border-radius: 25px;
@@ -46,14 +45,10 @@ ion-header {
         margin-bottom: 16px;
         height: 50px;
 
-        ion-icon {
-            margin: 0px;
-        }
+        ion-icon {margin: 0px;}
     }
 
-    .no-border {
-        --border-style: none;
-    }
+    .no-border {--border-style: none;}
 
     .no-padding {
         --padding-start: 0px;
@@ -115,16 +110,12 @@ ion-header {
         padding-right: 16px;
         align-items: center;
 
-        ion-datetime {
-            padding: 0px;
-        }
+        ion-datetime {padding: 0px;}
 
         ion-icon {
             font-size: 20px;
             color: var(--ion-color-primary);
         }
-
-        
     }
 
     .time_slots {
@@ -162,7 +153,5 @@ ion-header {
 
     }
 
-    ion-button {
-        margin-top: 20px;
-    }
+    ion-button {margin-top: 20px;}
 }
