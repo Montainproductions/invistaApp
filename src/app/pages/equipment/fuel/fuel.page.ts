@@ -41,52 +41,51 @@ export class FuelPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ionViewDidEnter() {
-      this.loadData();
-    }
+    this.loadData();
+  }
     
-    async loadData() {
-        const token = await this.storageService.get(Constants.AUTH);
-        var data = JSON.parse(token); console.log(data);
-        this.user = data;
-        this.listKmEquipments();
-    }
+  async loadData() {
+    const token = await this.storageService.get(Constants.AUTH);
+    var data = JSON.parse(token); console.log(data);
+    this.user = data;
+    this.listKmEquipments();
+  }
   
-    getFormattedDate(fecha: string): string | null {
-      return this.datePipe.transform(fecha, 'dd/MM/yyyy');
-    }
+  getFormattedDate(fecha: string): string | null {
+    return this.datePipe.transform(fecha, 'dd/MM/yyyy');
+  }
 
-    listKmEquipments() {
-      const role_id = this.user.role_id;
-      const company_id = this.user.company.id;
-      const document = this.user.person.document;
-      console.log(role_id, company_id, document);
-      this.invistaService.listFuelEquipment(document, company_id, this.codeEquipment).then(
-        (res) => {
-          if (res.data.status) {
-            console.log('res:::', res.data.data)  
-            const equipmentFuels = res.data.data.equipmentFuels;
-            this.Plate = res.data.data.equipments.Plate;
-            //console.log('pLATE:::', this.Plate);
-            this.fuelEquipments = equipmentFuels;
-            this.loadMore();
-          }
-        },
-        (error) => {
-          console.log(error);
+  listKmEquipments() {
+    const role_id = this.user.role_id;
+    const company_id = this.user.company.id;
+    const document = this.user.person.document;
+    console.log(role_id, company_id, document);
+    this.invistaService.listFuelEquipment(document, company_id, this.codeEquipment).then(
+      (res) => {
+        if (res.data.status) {
+          console.log('res:::', res.data.data)  
+          const equipmentFuels = res.data.data.equipmentFuels;
+          this.Plate = res.data.data.equipments.Plate;
+          //console.log('pLATE:::', this.Plate);
+          this.fuelEquipments = equipmentFuels;
+          this.loadMore();
         }
-      )
-    }
-  
-    goBack() {
-      this.router.navigateByUrl('/equipment');
-    }
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
 
-    addFuel() {
-      console.log('code:::', this.codeEquipment);
+  goBack() {
+    this.router.navigateByUrl('/equipment');
+  }
+
+  addFuel() {
+    console.log('code:::', this.codeEquipment);
     let navigationExtrars: NavigationExtras = {
       state: {
         code: this.codeEquipment,
@@ -94,10 +93,10 @@ export class FuelPage implements OnInit {
       }
     };
     this.router.navigateByUrl('/equipment/fuel/add-fuel', navigationExtrars);
-    }
+  }
 
-    editFuel(id: any) {
-      console.log('code:::', this.codeEquipment);
+  editFuel(id: any) {
+    console.log('code:::', this.codeEquipment);
     let navigationExtrars: NavigationExtras = {
       state: {
         id: id,
@@ -105,17 +104,16 @@ export class FuelPage implements OnInit {
       }
     };
     this.router.navigateByUrl('/equipment/fuel/edit-fuel', navigationExtrars);
-    }
+  }
 
-    loadMore() {
-      const nextIndex = this.currentIndex + this.itemsPerPage;
-      this.visibleItems = this.fuelEquipments.slice(0, nextIndex); // Tomar los siguientes elementos
-      this.currentIndex = nextIndex;
-  
-      // Ocultar el botón si ya no hay más elementos para cargar
-      if (this.currentIndex >= this.fuelEquipments.length) {
-        this.hasMoreItems = false;
-      }
-    }
+  loadMore() {
+    const nextIndex = this.currentIndex + this.itemsPerPage;
+    this.visibleItems = this.fuelEquipments.slice(0, nextIndex); // Tomar los siguientes elementos
+    this.currentIndex = nextIndex;
 
+    // Ocultar el botón si ya no hay más elementos para cargar
+    if (this.currentIndex >= this.fuelEquipments.length) {
+      this.hasMoreItems = false;
+    }
+  }
 }
